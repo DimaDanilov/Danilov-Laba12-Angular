@@ -16,7 +16,7 @@ export class TableWorkersComponent implements OnInit {
   @Output() deleteWorker = new EventEmitter<number>();
   @Output() editWorker = new EventEmitter<number>();
 
-  display=[false,false,false];
+  display=[];
  
   constructor() {}
 
@@ -29,6 +29,7 @@ export class TableWorkersComponent implements OnInit {
   onEditWorker(worker: any){
     worker.id = this.editId;
     this.editWorker.emit(worker);
+    this.display[worker.id]=false;
   }
 
   onPress(id) {
