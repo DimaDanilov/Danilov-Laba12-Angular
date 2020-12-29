@@ -35,10 +35,11 @@ export class AppComponent {
     this.workers.push(worker);
   }
 
-  onEditById(worker){
-    console.log(worker);
-    this.workers.push(worker);
-    this.workers.splice(worker.id,1);
+  onEditById(new_worker){
+    let worker_erase = this.workers.find(worker => worker.id === new_worker.id) //найти нужный элемент в массиве
+    this.workers.splice(this.workers.indexOf(worker_erase),1); //удалить старый элемент из массива
+    this.workers.push(new_worker); //запушить новый
+    this.workers.sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);} ); //отсортировать массив по id
   }
 
   

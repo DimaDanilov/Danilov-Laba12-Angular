@@ -7,6 +7,9 @@ import { MyWorker } from 'src/app/shared/worker.model';
   styleUrls: ['./table-workers.component.css'],
 })
 export class TableWorkersComponent implements OnInit {
+
+  editId: number;
+
   @Input() title: string;
   @Input() workers: MyWorker[] = [];
 
@@ -23,18 +26,17 @@ export class TableWorkersComponent implements OnInit {
     this.deleteWorker.emit(id);
   }
 
-  onEditWorker(id:number){
-    this.editWorker.emit(id);
+  onEditWorker(worker: any){
+    worker.id = this.editId;
+    this.editWorker.emit(worker);
   }
 
   onPress(id) {
+    this.editId = id;
     if (!this.display[id])
       this.display[id] = true;
     else
     this.display[id] = false;
-
-    // console.log(this.display[id-1]);
-    // console.log(this.display);
   }
 
 }
